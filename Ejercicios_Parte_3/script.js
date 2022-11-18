@@ -1,147 +1,70 @@
 function Ejercicio_01() {
-   let suma = function (x, y) {
-      return x + y;
-   };
+   let nombre = prompt("Ingrese el nombre del trabajador: ");
+   let sueldo = parseFloat(prompt("Ingrese el sueldo del trabajador: S/"));
+   let nro_hijos = parseInt(prompt("Ingrese el número de hijos: "));
+   let sueldo_final = sueldo;
+   let bonificacion = 0;
 
-   let resta = function (x, y) {
-      return x - y;
-   };
-
-   let multiplicacion = function (x, y) {
-      return x * y;
-   };
-
-   let division = function (x, y) {
-      return x / y;
-   };
-
-   let potencia = function (x, y) {
-      return Math.pow(x, y);
-   };
-
-   let raiz_cuadrada = function (x) {
-      return Math.sqrt(x);
-   };
-
-   let opcion, num1, num2, num, resultado;
-
-   while (true) {
-      opcion = prompt(
-         "1: suma\n2: resta\n3: multiplicación\n4: división\n5: potencia\n6: raíz cuadrada\n\nIngresar opción:"
-      );
-      if (opcion === null) {
-         // Cancelar
-         return;
-      }
-      if (opcion === "") {
-         // Vacío
-         alert("Ingrese una opción");
-         continue;
-      }
-      if (isNaN(opcion)) {
-         // No es un número
-         alert("Opción no válida. Ingrese un número");
-         continue;
-      }
-      // Es un número
-      opcion = parseInt(opcion);
-      if (opcion < 1 || opcion > 6) {
-         alert("Opción no válida");
-         continue;
-      } else {
-         break;
-      }
+   if (nro_hijos > 0) {
+      bonificacion = 0.05 * sueldo;
+      sueldo_final += bonificacion;
    }
 
-   if (opcion != 6) {
-      num1 = parseFloat(prompt("Ingrese el primer número: "));
-      num2 = parseFloat(prompt("Ingrese el segundo número: "));
-   } else {
-      num = parseFloat(prompt("Ingrese el número: "));
-   }
-
-   switch (opcion) {
-      case 1:
-         resultado = suma(num1, num2);
-         break;
-      case 2:
-         resultado = resta(num1, num2);
-         break;
-      case 3:
-         resultado = multiplicacion(num1, num2);
-         break;
-      case 4:
-         resultado = division(num1, num2).toFixed(2);
-         break;
-      case 5:
-         resultado = potencia(num1, num2);
-         break;
-      case 6:
-         resultado = raiz_cuadrada(num).toFixed(2);
-         break;
-      default:
-         break;
-   }
-   alert(`El resultado es: ${resultado}`);
+   alert(
+      `Nombre: ${nombre}\nBonificación: S/${bonificacion}\nSueldo final: S/${sueldo_final}`
+   );
 }
 
 function Ejercicio_02() {
-   let CelsiusToFahrenheit = (grado) => {
-      return (grado * 1.8 + 32).toFixed(2);
-   };
+   let numero = parseInt(prompt("Ingrese un número: "));
 
-   let FahrenheitToCelsius = (grado) => {
-      return ((grado - 32) / 1.8).toFixed(2);
-   };
+   if (numero > 500) {
+      alert(`El 18% de ${numero} es: ${(numero * 0.18).toFixed(2)}`);
+   }
+}
 
-   let opcion, grado, resultado;
+function Ejercicio_03() {
+   let numero = parseInt(prompt("Ingrese un número: "));
 
-   while (true) {
-      opcion = prompt(
-         "1: Celsius a Fahrenheit\n2: Fahrenheit a Celsius\n\nIngresar opción:"
+   let factorial = 1;
+   for (let i = 2; i <= numero; i++) {
+      factorial *= i;
+   }
+
+   alert(`El factorial de ${numero} es: ${factorial}`);
+}
+
+function Ejercicio_04() {
+   let importe_compra = parseInt(prompt("Ingrese el importe de la compra: S/"));
+   let importe_final = importe_compra;
+   let descuento = 0;
+
+   if (importe_compra >= 150) {
+      descuento = 0.12 * importe_compra;
+      importe_final -= descuento;
+   }
+
+   alert(
+      `Importe de la compra: S/${importe_compra}\nDescuento: S/${descuento}\nImporte final: S/${importe_final}`
+   );
+}
+
+function Ejercicio_05() {
+   let alumno = prompt("Ingrese el nombre del alumno: ");
+   let nota_parcial = parseFloat(
+      prompt("Ingrese la nota del examen parcial: ")
+   );
+   let nota_final = parseFloat(prompt("Ingrese la nota del examen final: "));
+   let nota_practicas = parseFloat(
+      prompt("Ingrese la nota de las prácticas: ")
+   );
+   let promedio_final = (nota_parcial + 2 * nota_final + nota_practicas) / 4;
+
+   if (promedio_final >= 11) {
+      alert(
+         `El alumno ${alumno} ha aprobado el curso.\nPromedio final: ${promedio_final.toFixed(
+            2
+         )}`
       );
-      if (opcion === null) {
-         // Cancelar
-         return;
-      }
-      if (opcion === "") {
-         // Vacío
-         alert("Ingrese una opción");
-         continue;
-      }
-      if (isNaN(opcion)) {
-         // No es un número
-         alert("Opción no válida. Ingrese un número");
-         continue;
-      }
-      // Es un número
-      opcion = parseInt(opcion);
-      if (opcion < 1 || opcion > 2) {
-         alert("Opción no válida");
-         continue;
-      } else {
-         break;
-      }
-   }
-
-   if (opcion === 1) {
-      grado = parseFloat(prompt("Ingrese grados en Celsius: "));
-   }
-   if (opcion === 2) {
-      grado = parseFloat(prompt("Ingrese grados en Fahrenheit: "));
-   }
-
-   switch (opcion) {
-      case 1:
-         resultado = CelsiusToFahrenheit(grado);
-         alert(`${grado}°C = ${resultado}°F`);
-         break;
-      case 2:
-         resultado = FahrenheitToCelsius(grado);
-         alert(`${grado}°F = ${resultado}°C`);
-         break;
-      default:
-         alert("Operación no válida");
-         break;
    }
 }
