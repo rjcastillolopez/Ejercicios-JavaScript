@@ -86,9 +86,9 @@ console.log(pokemons.sort((a, b) => a.base_damage - b.base_damage));
 
 // 2.- Ordenar los pokemons dependiendo del argumento que se le pase a la función: type, base_damage, base_hp, speed
 function sortBy(pokemons, prop) {
-   const values = ["type", "base_damage", "base_hp", "speed"];
+   const values = ["id", "name", "type", "base_damage", "base_hp", "speed"];
    if (values.includes(prop)) {
-      if (prop === "type") {
+      if (prop === "name" || prop === "type") {
          return pokemons.sort((a, b) => a[prop].localeCompare(b[prop]));
       } else {
          return pokemons.sort((a, b) => a[prop] - b[prop]);
@@ -185,3 +185,67 @@ function sortByDamage(pokemonMaster) {
 
 let pokemons_sorted = sortByDamage(pokemonMaster);
 console.log(pokemons_sorted);
+
+// 9.- Crear una lista desordenada de pokemons en el documento html
+const root = document.getElementById("root");
+const ol = document.createElement("ol");
+root.append(ol);
+
+pokemons.forEach((pokemon) => {
+   const li = document.createElement("li");
+   li.textContent = pokemon.name;
+   ol.append(li);
+});
+
+// 10.- Crear una tabla de pokemons con columnas: id, name, type, base_damage, base_hp, speed
+
+// obtener nombres de los atributos
+const keys = Object.keys(pokemons[0]);
+console.log(keys);
+
+// crear tabla
+const table = document.createElement("table");
+root.append(table);
+
+// crear encabezados de la tabla
+const thead = document.createElement("thead");
+table.append(thead);
+const tr = document.createElement("tr");
+thead.append(tr);
+keys.forEach((key) => {
+   const th = document.createElement("th");
+   th.textContent = key;
+   tr.append(th);
+});
+
+// crear cuerpo de la tabla
+const tbody = document.createElement("tbody");
+table.append(tbody);
+pokemons.forEach((pokemon) => {
+   const tr = document.createElement("tr");
+   tbody.append(tr);
+   for (const key in pokemon) {
+      const td = document.createElement("td");
+      td.textContent = pokemon[key];
+      tr.append(td);
+   }
+});
+
+// 11.- Agregar evento que permita ordenar la tabla de pokemons por cada columna
+const ths = document.querySelectorAll("th");
+ths.forEach((th) => {
+   th.addEventListener("click", () => {
+      let prop = th.textContent;
+      let sorted = sortBy(pokemons, prop);
+      tbody.innerHTML = ""; // limpiar tabla
+      sorted.forEach((pokemon) => {
+         const tr = document.createElement("tr");
+         tbody.append(tr);
+         for (const key in pokemon) {
+            const td = document.createElement("td");
+            td.textContent = pokemon[key];
+            tr.append(td);
+         }
+      });
+   });
+});
