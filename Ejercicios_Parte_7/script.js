@@ -1,59 +1,53 @@
-let users = [
-   {
-      id: 1,
-      nombre: "Andres",
-      apellido: "Pacheco",
-      edad: 38,
-      profesion: "developer",
-      created_at: "2022-09-26T06:25:21.118Z",
-      modified_at: "",
-   },
-   {
-      id: 2,
-      nombre: "Andrea",
-      apellido: "Sanchez",
-      edad: 25,
-      profesion: "profesor",
-      created_at: "2022-04-18T14:14:32.879Z",
-      modified_at: "",
-   },
-   {
-      id: 3,
-      nombre: "Julia",
-      apellido: "Ochoa",
-      edad: 32,
-      profesion: "musico",
-      created_at: "2021-12-14T11:53:38.279Z",
-      modified_at: "",
-   },
-   {
-      id: 4,
-      nombre: "Samuel",
-      apellido: "Martinez",
-      edad: 29,
-      profesion: "programador",
-      created_at: "2022-01-26T03:31:15.202Z",
-      modified_at: "",
-   },
-   {
-      id: 5,
-      nombre: "Roberto",
-      apellido: "Mattos",
-      edad: 40,
-      profesion: "chef",
-      created_at: "2022-07-27T02:06:22.760Z",
-      modified_at: "",
-   },
-   {
-      id: 6,
-      nombre: "Mercedes",
-      apellido: "Sanchez",
-      edad: 35,
-      profesion: "veterinario",
-      created_at: "2022-05-01T22:06:35.864Z",
-      modified_at: "",
-   },
-];
+import { users } from "./users.js";
+
+// Prompts y alerts
+function prompt_alerts(msg = null, prop, type, fun_val = null, msg_val = "") {
+   while (true) {
+      const value = msg ? prompt(msg) : prompt(`Ingrese un valor para ${prop}`);
+      if (value === null) {
+         // Cancelar
+         return;
+      } else if (value === "") {
+         // Vacío
+         alert(`Debe ingresar un valor`);
+         continue;
+      }
+      if (type === "number") {
+         if (isNaN(value)) {
+            // No es un número
+            alert(`El valor ingresado no es un número`);
+            continue;
+         }
+      } else if (type === "date") {
+         // No es una fecha
+         const date = new Date(value);
+         if (isNaN(date.getTime())) {
+            alert(`El valor ingresado no es una fecha válida`);
+            continue;
+         }
+      } else if (type === "string") {
+         // No es un string
+         if (!/^[a-zA-Z]+$/.test(value)) {
+            alert(`El valor ingresado debe contener solo letras`);
+            continue;
+         }
+      }
+      if (fun_val !== null) {
+         let new_value = value;
+         if (type === "number") {
+            new_value = parseInt(value);
+         }
+         if (!fun_val(new_value)) {
+            alert(msg_val);
+            continue;
+         } else {
+            return new_value;
+         }
+      } else {
+         return value;
+      }
+   }
+}
 
 // Tabla de usuarios
 function users_table(users) {
@@ -61,7 +55,6 @@ function users_table(users) {
    tableUsers.innerHTML = ""; // Limpiar tabla
    // leer encabezados
    const keys = Object.keys(users[0]);
-   console.log(keys);
    // crear tabla
    const table = document.createElement("table");
    table.classList.add("table");
@@ -111,11 +104,28 @@ function create() {
       if (prop === "id") {
          newUser[prop] = users[users.length - 1].id + 1;
       } else if (prop === "edad") {
-         newUser[prop] = +prompt(`Ingrese ${[prop]} por favor: `);
+         const edad = prompt_alerts(
+            null,
+            prop,
+            "number",
+            (value) => value > 0 && value < 100,
+            "La edad debe estar entre 0 y 100"
+         );
+         if (edad === undefined) {
+            return;
+         } else {
+            newUser[prop] = edad;
+         }
       } else if (prop === "created_at") {
          newUser[prop] = new Date().toISOString();
       } else {
-         newUser[prop] = prompt(`Ingrese ${[prop]} por favor: `);
+         const value = prompt_alerts(null, prop, "string", null, null);
+         console.log(value);
+         if (value === undefined) {
+            return;
+         } else {
+            newUser[prop] = value;
+         }
       }
    }
    users.push(newUser);
@@ -124,7 +134,16 @@ function create() {
 
 // Actualizar usuarios
 function update() {
-   const id = +prompt("Ingrese id del usuario a actualizar");
+   const id = prompt_alerts(
+      null,
+      "id",
+      "number",
+      (value) => value > 0,
+      "Ingrese un id valido"
+   );
+   if (id === undefined) {
+      return;
+   }
    const user = users.find((user) => user.id === id);
    console.log(user);
    if (user) {
@@ -132,11 +151,27 @@ function update() {
          if (prop === "id" || prop === "created_at") {
             continue;
          } else if (prop === "edad") {
-            user[prop] = +prompt(`Ingrese ${[prop]} por favor: `);
+            const edad = prompt_alerts(
+               null,
+               prop,
+               "number",
+               (value) => value > 0 && value < 100,
+               "La edad debe estar entre 0 y 100"
+            );
+            if (edad === undefined) {
+               return;
+            } else {
+               user[prop] = edad;
+            }
          } else if (prop === "modified_at") {
             user[prop] = new Date().toISOString();
          } else {
-            user[prop] = prompt(`Ingrese ${[prop]} por favor: `);
+            const value = prompt_alerts(null, prop, "string", null, null);
+            if (value === undefined) {
+               return;
+            } else {
+               user[prop] = value;
+            }
          }
       }
    } else {
@@ -147,15 +182,36 @@ function update() {
 
 // Eliminar usuario
 function del() {
-   const indice = +prompt("Ingrese el id del usuario a eliminar: ");
-   const seguro = prompt("Esta usted seguro? Si/No");
-   if (seguro.toLowerCase() === "si") {
-      users.splice(indice - 1, 1);
-      alert("Usuario eliminado");
-   } else if (seguro.toLowerCase() === "no") {
+   const indice = prompt_alerts(
+      null,
+      "id",
+      "number",
+      (value) => value > 0,
+      "Ingrese un id valido"
+   );
+   if (indice === undefined) {
+      return;
+   }
+   const opt = prompt_alerts(
+      "¿Esta usted seguro que desea eliminar el usuario? Si/No",
+      null,
+      "string",
+      (value) => ["si", "no"].includes(value.toLowerCase()),
+      "Ingrese Si o No"
+   );
+   if (opt === "si") {
+      // remove user from user given the id
+      const user = users.find((user) => user.id === indice);
+      if (user) {
+         const index = users.indexOf(user);
+         users.splice(index, 1);
+         alert("Usuario eliminado");
+      } else {
+         alert("Usuario no existe");
+      }
+   }
+   if (opt === "no") {
       alert("No se elimino ningun usuario");
-   } else {
-      alert("Ingrese una respuesta valida");
    }
    read(users);
 }
@@ -191,7 +247,16 @@ function sort_by_headers(opt) {
 
 // Filtrar por fecha. Formato: yyyy-mm-dd
 function filter_by_date() {
-   const date = prompt("Ingrese fecha a filtrar. Formato yyyy-mm-dd: ");
+   const date = prompt_alerts(
+      "Ingrese una fecha. Formato: yyyy-mm-dd: ",
+      null,
+      "date",
+      null,
+      null
+   );
+   if (date === undefined) {
+      return;
+   }
    const filtered = users.filter((user) => {
       const userDateStr = user.created_at.split("T")[0];
       return userDateStr === date;
@@ -242,7 +307,7 @@ function main() {
    // update
    button("Actualizar", "orange", "darkorange", update);
    // delete
-   button("Borrar", "red", "darkred", del);
+   button("Eliminar", "red", "darkred", del);
    // filter by date
    button("Filtrar", "gray", "black", filter_by_date);
 }
