@@ -13,8 +13,8 @@ function prompt_alerts(msg = null, prop, type, fun_val = null, msg_val = "") {
          continue;
       }
       if (type === "number") {
+         // No es un número
          if (isNaN(value)) {
-            // No es un número
             alert(`El valor ingresado no es un número`);
             continue;
          }
