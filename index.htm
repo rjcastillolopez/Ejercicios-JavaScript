@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .symbol {
+         display: flex;
+         position: relative;
+         align-items: center;
+         justify-content: center;
+         margin: auto;
+         height: 250px;
+         width: 250px;
+         pointer-events: none;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- cross mark  -->
+   <div class="symbol">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+         <circle cx="50" cy="50" r="50" fill=#FF4141 />
+         <path d="M 25.0 25.0 L 75.0 75.0 M 25.0 75.0 L 75.0 25.0" stroke=#FFF stroke-width="10" />
+      </svg>
+   </div>
+   <!-- check mark -->
+   <div class="symbol">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+         <circle cx="50" cy="50" r="50" fill=#6BBE66 />
+         <path d="M 25.0 50.0 L 40.0 65.0 M 36.465 68.535 L 75.0 30.0" stroke=#FFF stroke-width="10" />
+      </svg>
+   </div>
+</body>
+
+<!-- <path d="M 1.5 1.5 L 14.5 14.5 M 14.5 1.5 L 1.5 14.5" stroke="black" stroke-width="3" /> -->
+
+</html>
