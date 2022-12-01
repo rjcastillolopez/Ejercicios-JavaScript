@@ -67,7 +67,7 @@ function changeInputs() {
    });
 }
 
-// reset inputs after form is sent
+// reset inputs
 function resetInputs() {
    const inputs = document.querySelectorAll(["input", "textarea"]);
    inputs.forEach((input) => {
@@ -109,8 +109,8 @@ function reset() {
 }
 
 function main() {
-   changeInputs();
    validateForm();
+   changeInputs();
    submit();
    reset();
 }
