@@ -7,7 +7,7 @@ function mark(valid, id) {
    div.id = "mark";
    div.addClass("symbol");
    // add new mark
-   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); // for svg elements this is the only it works
+   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); // for svg elements this is the only way it works
    $(svg).attr("viewBox", "0 0 100 100");
    const circle = document.createElementNS(
       "http://www.w3.org/2000/svg",
@@ -71,7 +71,7 @@ function resetInput(id, label_color = "black", border_color = "#ccc") {
 }
 
 // validate input using a regular expression
-function validateInput(id, regex, err_msg, err_empty, border_color = "#ccc") {
+function validateInput(id, regex, err_msg, empty_msg, border_color = "#ccc") {
    // check if input is valid
    var result = false;
    if (id === "repeat-password") {
@@ -88,7 +88,7 @@ function validateInput(id, regex, err_msg, err_empty, border_color = "#ccc") {
       const p = $("<p></p>");
       p.addClass("err-msg");
       if ($(`#${id}`).val() === "") {
-         p.text(err_empty);
+         p.text(empty_msg);
       } else {
          p.text(err_msg);
          mark(false, id); // add cross mark
@@ -97,7 +97,7 @@ function validateInput(id, regex, err_msg, err_empty, border_color = "#ccc") {
    }
 }
 
-// submit form if all inputs are valid
+// submit form when user clicks on "Enviar" button (submit event) if all inputs are valid
 function submit() {
    $("form").on("submit", (e) => {
       e.preventDefault();
@@ -197,8 +197,8 @@ function resetForm() {
       $(`#${this.id}`).val("");
       resetInput(this.id);
    });
-   resetInput("gender");
    $("select").val("default");
+   resetInput("gender");
 }
 
 // reset form when user clicks on "Borrar" button (reset event)
@@ -210,9 +210,9 @@ function reset() {
 
 // main function
 function main() {
+   checkInputs();
    submit();
    reset();
-   checkInputs();
 }
 
 main();
