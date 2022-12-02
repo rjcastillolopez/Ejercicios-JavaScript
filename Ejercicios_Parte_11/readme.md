@@ -7,12 +7,14 @@ Formulario de registro de usuario implementado utilizando HTML, CSS, JavaScript 
 <div align="center">
   <img src="./assets/web1.jpg" width="600px">
 </div>
+<br/>
 
 **Vista de la interfaz del formulario con mensajes de validación:**
 
 <div align="center">
   <img src="./assets/web2.jpg" width="600px">
 </div>
+<br/>
 
 **Vista de la interfaz del formulario después de enviar:**
 
