@@ -1,0 +1,91 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <form class="form-container" id="Formulario">
+        <p class="tittle">Formulario</p>
+        <div class="row-container">
+            <!-- Username -->
+            <div class="element-container" id="username-container">
+                <label id="label-username" for="username">Usuario</label>
+                <div class="input-container" id="input-username">
+                    <input type="text" id="username" placeholder="john123" />
+                </div>
+            </div>
+            <!-- Name -->
+            <div class="element-container" id="name-container">
+                <label id="label-name" for="name">Nombre</label>
+                <div class="input-container" id="input-name">
+                    <input type="text" id="name" placeholder="John" />
+                </div>
+            </div>
+        </div>
+        <div class="row-container">
+            <!-- Gender -->
+            <div class="element-container" id="gender-container">
+                <label id="label-gender" for="gender">Género</label>
+                <!-- select masculino o femenino -->
+                <select name="gender" id="gender">
+                    <option value="default" selected>Elija una opción</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                </select>
+            </div>
+            <!-- Birthdate -->
+            <div class="element-container" id="birthdate-container">
+                <label id="label-birthdate" for="birthdate">Fecha de nacimiento</label>
+                <div class="input-container" id="input-birthdate">
+                    <input type="date" id="birthdate" />
+                </div>
+            </div>
+        </div>
+        <div class="row-container">
+            <!-- Email -->
+            <div class="element-container" id="email-container">
+                <label id="label-email" for="email">Email</label>
+                <div class="input-container" id="input-email">
+                    <input type="text" id="email" placeholder="user@hotmail.com" />
+                </div>
+            </div>
+            <!-- Phone -->
+            <div class="element-container" id="phone-container">
+                <label id="label-phone" for="phone">Teléfono</label>
+                <div class="input-container" id="input-phone">
+                    <input type="tel" id="phone" placeholder="9XX-XXXXXX" />
+                    <div class="symbol" id="symbol-phone"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row-container">
+            <!-- Password -->
+            <div class="element-container" id="password-container">
+                <label id="label-password" for="password">Contraseña</label>
+                <div class="input-container" id="input-password">
+                    <input type="password" id="password" placeholder="********" />
+                </div>
+            </div>
+            <!-- Repeat password -->
+            <div class="element-container" id="repeat-password-container">
+                <label id="label-repeat-password" for="repeat-password">Repetir Contraseña</label>
+                <div class="input-container" id="input-repeat-password">
+                    <input type="password" id="repeat-password" placeholder="********" />
+                </div>
+            </div>
+        </div>
+        <div class="btn-container">
+            <!-- Send button -->
+            <button type="submit" class="btn btn-send" id="send">Enviar</button>
+            <!-- Clear button -->
+            <button type="reset" class="btn btn-reset" id="clear">Borrar</button>
+        </div>
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>

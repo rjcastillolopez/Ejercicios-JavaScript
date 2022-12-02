@@ -1,0 +1,118 @@
+body {
+   background-color: #f0f0f0;
+   font-family: open sans, arial, sans-serif;
+   font-size: 14px;
+   color: #333;
+}
+.form-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width: 550px;
+   margin: 50px auto;
+   padding: 20px;
+   justify-content: center;
+   align-items: center;
+   border-radius: 10px;
+   background-color: #fff;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.row-container {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 100%;
+   margin: 10px auto;
+}
+.element-container {
+   display: flex;
+   flex-direction: column;
+   padding: 5px 10px;
+   width: 100%;
+}
+label {
+   margin-left: 5px;
+   margin-bottom: 5px;
+   font-size: 14px;
+   font-weight: 500;
+}
+.input-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width: 100%;
+}
+input {
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   outline: none;
+}
+select {
+   height: 37px;
+   padding: 8px 10px 8px 10px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   outline: none;
+   background-color: #fff;
+}
+.symbol {
+   position: absolute;
+   align-self: end;
+   margin-right: 10px;
+   height: 20px;
+   width: 20px;
+   z-index: 1;
+   pointer-events: none;
+}
+.tittle {
+   font-size: 24px;
+   font-weight: 700;
+   color: #333;
+   margin-bottom: 20px;
+}
+.err-msg {
+   font-size: 12px;
+   color: #333;
+   margin-top: 10px;
+   margin-bottom: -15px;
+   margin-left: 5px;
+}
+.btn-container {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   width: 100%;
+   margin: 10px 120px;
+}
+.btn {
+   width: 30%;
+   margin: 15px 35px 15px 35px;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 8px;
+   align-self: center;
+   color: #fff;
+   font-size: 16px;
+   font-weight: 500;
+   cursor: pointer;
+   outline: none;
+}
+.btn-send {
+   background-color: #00ff00;
+}
+.btn-send:hover {
+   background-color: #00cc00;
+}
+.btn-reset {
+   background-color: #ff0000;
+}
+.btn-reset:hover {
+   background-color: #cc0000;
+}
+.send-msg {
+   align-self: center;
+   font-size: 12px;
+   color: #00f;
+   margin-bottom: 10px;
+}
