@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- AngularJS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+   <link rel="stylesheet" href="styles.css">
+   <title>Document</title>
+</head>
+
+<body>
+   <div class="container" ng-app="myApp" ng-controller="myCtrl">
+      <h1>Calcular Salario</h1>
+      <form>
+         <p style="color: black; font-size: 1rem">Ingrese los datos:</p>
+         <div class="row">
+            <label for="codigo">Código:</label>
+            <input type="text" id="codigo" ng-model="codigo" required>
+         </div>
+         <div class="row">
+            <label for="horas">Horas trabajadas (h):</label>
+            <input type="number" id="horas" ng-model="horas" min="1" max="300" step="0.1" required>
+         </div>
+         <div class="row">
+            <label for="tarifa-hora">Tarifa por hora (S/.):</label>
+            <input type="number" id="tarifa-hora" ng-model="tarifaHora" min="1" max="300" step="0.1" value="25"
+               placeholder="25">
+         </div>
+         <button ng-click="calcularSalario()">Calcular</button>
+      </form>
+      <div class="output">
+         <p>Salario básico: S/.</p>
+         <p style="color: black;">{{salarioBase || 0}}</p>
+      </div>
+      <div class="output">
+         <p>Descuento: S/.</p>
+         <p style="color: black;">{{descuento || 0}}</p>
+      </div>
+      <div class="output">
+         <p>Salario neto: S/.</p>
+         <p style="color: black">{{salarioNeto || 0}}</p>
+      </div>
+      <script src="app.js"></script>
+   </div>
+</body>
+
+</html>
