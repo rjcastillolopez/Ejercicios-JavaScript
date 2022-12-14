@@ -57,8 +57,8 @@ app.controller("myCtrl", function ($scope) {
       var horas = $scope.horas;
       var salario = horas * tarifaHora;
       // Asignación de los valores a las variables del scope
-      $scope.salarioBase = salario;
-      $scope.descuento = descuento(salario);
-      $scope.salarioNeto = salario - $scope.descuento;
+      $scope.salarioBase = salario.toFixed(2);
+      $scope.descuento = descuento(salario).toFixed(2);
+      $scope.salarioNeto = (salario - $scope.descuento).toFixed(2);
    };
 });
