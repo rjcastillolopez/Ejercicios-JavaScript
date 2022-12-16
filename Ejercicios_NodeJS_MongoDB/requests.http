@@ -1,0 +1,28 @@
+###
+POST http://localhost:3000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+   "name": "Frank Kent",
+   "age": 41,
+   "email": "kent@gmail.com"
+}
+
+###
+GET http://localhost:3000/api/users HTTP/1.1
+
+###
+GET http://localhost:3000/api/users/639bb11336c655d2204b009f HTTP/1.1
+
+###
+PUT http://localhost:3000/api/users/639bb11336c655d2204b009f HTTP/1.1
+Content-Type: application/json
+
+{
+   "name": "Joshua Paredes",
+   "age": 42,
+   "email": "paredes@gmail.com"
+}
+
+###
+DELETE http://localhost:3000/api/users/639bb247648b45c58ce8f5be HTTP/1.1
